@@ -41,6 +41,20 @@ function toGregorian(jy, jm, jd) {
 }
 
 /*
+  Converts Gregorian date to full jallali.
+*/
+function toFullJalaali(gy, gm, gd) {
+  var _gy = gy;
+  if (Object.prototype.toString.call(gy) === '[object Date]') {
+    gd = gy.getDate()
+    gm = gy.getMonth() + 1
+    _gy = gy.getFullYear()
+  }
+  var date = d2j(g2d(_gy, gm, gd))
+  return days[gy.getDay()] + ' ' + date.jd + ' ' + months[date.jm - 1] + ' ' + date.jy;
+}
+
+/*
   Checks whether a Jalaali date is valid or not.
 */
 function isValidJalaaliDate(jy, jm, jd) {
